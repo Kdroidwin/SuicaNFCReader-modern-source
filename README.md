@@ -1,6 +1,6 @@
 # Suica NFC Reader by Kdroidwin
 
-このAndroidアプリは、日本で広く利用されている交通系NFCカード **Suica** 、**Pasmo** 、**ICOCA** 、**manaca**のデータを読み取り、表示するために作られています。
+このAndroidアプリは、日本で広く利用されている交通系NFCカード **Suica** 、**Pasmo** 、**ICOCA** 、**manaca**などのデータを読み取り、表示するために作られています。
 
 このアプリでは、カードから取得した **データを確認** することができます。
 
