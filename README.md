@@ -19,5 +19,5 @@
 - 複数のカードに対応
 
 ## Credits
-https://github.com/edenparadisus/SuicaNFCReader
-Codex
+- https://github.com/edenparadisus/SuicaNFCReader
+- Codex
