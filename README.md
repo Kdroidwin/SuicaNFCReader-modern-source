@@ -6,7 +6,8 @@
 
 ## 最新APKバージョン
 
-最新APKバージョンはリリースからダウンロードできます。
+最新APKバージョンは[リリース](https://github.com/Kdroidwin/SuicaNFCReader-modern-source/releases)からダウンロードできます。
+
 
 
 ## 機能
