@@ -20,5 +20,5 @@
 - 複数のカードに対応
 
 ## Credits
-- https://github.com/edenparadisus/SuicaNFCReader
+- https://github.com/edenparadisus/SuicaNFCReader　(NFCを読み取る部分)
 - Codex
