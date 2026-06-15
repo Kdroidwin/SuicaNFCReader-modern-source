@@ -32,5 +32,5 @@
 - ウィジェット対応
 
 ## Credits
-- https://github.com/edenparadisus/SuicaNFCReader　(NFCを読み取る部分)
+- [SuicaNFCReader](https://github.com/edenparadisus/SuicaNFCReader)　(NFCを読み取る部分)
 - Codex
