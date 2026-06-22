@@ -2,9 +2,13 @@ package com.example.suicanfcreader
 
 import android.app.Activity
 import android.graphics.Color.TRANSPARENT
+<<<<<<< HEAD
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
+=======
+import androidx.compose.foundation.layout.Row
+>>>>>>> origin/main
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -25,10 +29,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+<<<<<<< HEAD
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
+=======
+import androidx.compose.ui.platform.LocalView
+>>>>>>> origin/main
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.rememberNavController
@@ -86,7 +94,15 @@ private fun ThemeMenu(
     var expanded by remember { mutableStateOf(false) }
 
     IconButton(onClick = { expanded = true }) {
+<<<<<<< HEAD
         PaletteIcon()
+=======
+        Text(
+            text = "色",
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground
+        )
+>>>>>>> origin/main
     }
     DropdownMenu(
         expanded = expanded,
@@ -113,6 +129,7 @@ private fun ThemeMenu(
 }
 
 @Composable
+<<<<<<< HEAD
 private fun PaletteIcon() {
     val base = MaterialTheme.colorScheme.onBackground
     val cutout = MaterialTheme.colorScheme.background
@@ -137,6 +154,8 @@ private fun PaletteIcon() {
 }
 
 @Composable
+=======
+>>>>>>> origin/main
 private fun ApplySystemBars(themeMode: AppThemeMode) {
     val view = LocalView.current
     val lightBars = themeMode == AppThemeMode.WHITE

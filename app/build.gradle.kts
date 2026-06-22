@@ -7,8 +7,13 @@ plugins {
 }
 
 val appId = "io.github.kdroidwin.suicanfc"
+<<<<<<< HEAD
 val verCode = 103
 val verId = "1.1.2"
+=======
+val verCode = 100
+val verId = "1.0.0"
+>>>>>>> origin/main
 
 android {
     namespace = "com.example.suicanfcreader"
@@ -54,7 +59,11 @@ android {
         create("default") {
             dimension = "version"
             val timestamp = releaseTime()
+<<<<<<< HEAD
             val newFileName = "suicanfc-kd-externaldb-v${verId}_${timestamp}.apk"
+=======
+            val newFileName = "suicanfc-kd-v${verId}_${timestamp}.apk"
+>>>>>>> origin/main
 
             buildOutputs.all {
                 (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)

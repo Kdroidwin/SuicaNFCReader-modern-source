@@ -67,9 +67,12 @@ fun TopScreen(
     val featureFlags = topScreenViewModel.featureFlags.observeAsState(emptyMap())
     val clipboardManager: ClipboardManager = LocalClipboardManager.current
     val selectedSummary = summaries.value.firstOrNull { it.cardId == selectedCardId.value }
+<<<<<<< HEAD
     val groupedHistory = selectedHistory.value
         .mapIndexed { index, card -> index to card }
         .groupBy { it.second.date.orEmpty() }
+=======
+>>>>>>> origin/main
     var aliasDialogCard by remember { mutableStateOf<SuicaCardSummary?>(null) }
     var editingRecord by remember { mutableStateOf<TransitHistoryRecord?>(null) }
     var showStatsDialog by remember { mutableStateOf(false) }
@@ -152,6 +155,7 @@ fun TopScreen(
                 EmptyHistoryCard()
             }
         } else {
+<<<<<<< HEAD
             groupedHistory.forEach { (date, records) ->
                 item(key = "date-$date") {
                     DateHeader(date.toJapaneseDateLabel())
@@ -164,6 +168,15 @@ fun TopScreen(
                         onEdit = { editingRecord = card }
                     )
                 }
+=======
+            itemsIndexed(selectedHistory.value) { index, card ->
+                HistoryCard(
+                    card = card,
+                    index = index + 1,
+                    isLatest = index == 0,
+                    onEdit = { editingRecord = card }
+                )
+>>>>>>> origin/main
             }
         }
 
@@ -326,7 +339,11 @@ private fun BalanceSummary(
 
             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 Text(
+<<<<<<< HEAD
                     text = summary?.latestRecord.balanceText(),
+=======
+                    text = summary?.latestRecord.balanceText() ?: "¥--",
+>>>>>>> origin/main
                     color = Color.White,
                     style = MaterialTheme.typography.displaySmall,
                     fontWeight = FontWeight.Bold
@@ -461,6 +478,7 @@ private fun SectionHeader(title: String, supportingText: String) {
 }
 
 @Composable
+<<<<<<< HEAD
 private fun DateHeader(text: String) {
     Text(
         modifier = Modifier.fillMaxWidth(),
@@ -472,6 +490,8 @@ private fun DateHeader(text: String) {
 }
 
 @Composable
+=======
+>>>>>>> origin/main
 private fun HistoryCard(
     card: TransitHistoryRecord,
     index: Int,
@@ -558,6 +578,7 @@ private fun HistoryCard(
                     )
                 }
 
+<<<<<<< HEAD
                 val hasInPlace = card.hasInPlace()
                 val hasOutPlace = card.hasOutPlace()
                 if (card.isSpecialActivity()) {
@@ -595,6 +616,20 @@ private fun HistoryCard(
                 } else {
                     ActivityLine(card = card)
                 }
+=======
+                RouteLine(
+                    label = "入",
+                    company = card.inCompany,
+                    line = card.inLine,
+                    station = card.inStation
+                )
+                RouteLine(
+                    label = "出",
+                    company = card.outCompany,
+                    line = card.outLine,
+                    station = card.outStation
+                )
+>>>>>>> origin/main
                 if (!card.memo.isNullOrBlank() || !card.tags.isNullOrBlank()) {
                     Text(
                         text = listOfNotNull(card.memo, card.tags?.let { "#$it" }).joinToString("  "),
@@ -611,6 +646,7 @@ private fun HistoryCard(
 }
 
 @Composable
+<<<<<<< HEAD
 private fun ActivityLine(card: TransitHistoryRecord) {
     val label = card.activityLabel()
     val place = card.activityPlace()
@@ -668,6 +704,8 @@ private fun ActivityLine(card: TransitHistoryRecord) {
 }
 
 @Composable
+=======
+>>>>>>> origin/main
 private fun RouteLine(label: String, company: String?, line: String?, station: String?) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -689,6 +727,7 @@ private fun RouteLine(label: String, company: String?, line: String?, station: S
             }
         }
         Column(modifier = Modifier.weight(1f)) {
+<<<<<<< HEAD
             val primary = station.firstReadableOrNull()
                 ?: line.firstReadableOrNull()
                 ?: company.firstReadableOrNull()
@@ -699,6 +738,10 @@ private fun RouteLine(label: String, company: String?, line: String?, station: S
                 .joinToString(" / ")
             Text(
                 text = primary,
+=======
+            Text(
+                text = station.takeReadable(),
+>>>>>>> origin/main
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Medium,
@@ -706,7 +749,11 @@ private fun RouteLine(label: String, company: String?, line: String?, station: S
                 overflow = TextOverflow.Ellipsis
             )
             Text(
+<<<<<<< HEAD
                 text = secondary.ifBlank { "交通系IC" },
+=======
+                text = listOf(company, line).map { it.takeReadable() }.joinToString(" / "),
+>>>>>>> origin/main
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = 1,
@@ -1028,6 +1075,7 @@ private fun TransitHistoryRecord?.amountColor(): Color {
     return if (amountValue >= 0) Color(0xFF64D98A) else Color(0xFFFFB199)
 }
 
+<<<<<<< HEAD
 private fun TransitHistoryRecord.hasInPlace(): Boolean =
     listOf(inCompany, inLine, inStation).any { !it.isNullOrBlank() && it != "-" }
 
@@ -1086,4 +1134,8 @@ private fun String.toJapaneseDateLabel(): String {
     val month = parts[1].toIntOrNull() ?: return this
     val day = parts[2].toIntOrNull() ?: return this
     return String.format(Locale.JAPAN, "%d年%d月%d日", year, month, day)
+=======
+private fun String?.takeReadable(): String {
+    return this?.takeIf { it.isNotBlank() && it != "-" } ?: "未記録"
+>>>>>>> origin/main
 }

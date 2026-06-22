@@ -326,6 +326,7 @@ class TopScreenViewModel(
             try {
                 val felica = NfcF.get(tag)
                 felica.connect()
+<<<<<<< HEAD
                 val readChunks = readHistoryChunks(felica, id, context, cardId)
                 felica.close()
                 val cards = withCalculatedAmounts(readChunks.cards)
@@ -333,6 +334,15 @@ class TopScreenViewModel(
                     cardId = cardId,
                     cards = cards,
                     rawText = buildRawText(cardId, cards, readChunks.rawResponses)
+=======
+                val res: ByteArray = felica.transceive(SuicaReader.readWithoutEncryption(id, READ_BLOCK_COUNT))
+                felica.close()
+                val cards = withCalculatedAmounts(fromData(res, context, cardId))
+                ReadResult(
+                    cardId = cardId,
+                    cards = cards,
+                    rawText = buildRawText(cardId, cards, res)
+>>>>>>> origin/main
                 )
             } catch (e: Exception) {
                 ReadResult(
@@ -343,6 +353,7 @@ class TopScreenViewModel(
             }
         }
 
+<<<<<<< HEAD
     private fun readHistoryChunks(
         felica: NfcF,
         id: ByteArray,
@@ -375,6 +386,8 @@ class TopScreenViewModel(
         )
     }
 
+=======
+>>>>>>> origin/main
     private fun fromData(data: ByteArray, context: Context, cardId: String): List<Card> {
         if (data.size <= 13) return emptyList()
 
@@ -383,7 +396,10 @@ class TopScreenViewModel(
         for (i in 0 until size) {
             if (13 + i * 16 + 15 >= data.size) break
             val felica = SuicaReader.parse(data, 13 + i * 16)
+<<<<<<< HEAD
             if (felica.year == 0 || felica.month !in 1..12 || felica.day !in 1..31) continue
+=======
+>>>>>>> origin/main
             val card: Card = Card.getCard(context, felica)
             card.cardId = cardId
             cards.add(card)
@@ -402,15 +418,22 @@ class TopScreenViewModel(
         }
     }
 
+<<<<<<< HEAD
     private fun buildRawText(cardId: String, cards: List<Card>, rawResponses: List<ByteArray>): String {
         val sb = StringBuilder()
         sb.appendLine("カードID: ${cardId.maskForDisplay()}")
         sb.appendLine("読み取り件数: ${cards.size}件")
+=======
+    private fun buildRawText(cardId: String, cards: List<Card>, data: ByteArray): String {
+        val sb = StringBuilder()
+        sb.appendLine("カードID: ${cardId.maskForDisplay()}")
+>>>>>>> origin/main
         cards.forEachIndexed { index, card ->
             sb.appendLine("=== %02d ===".format(index + 1))
             sb.appendLine("端末種別: ${card.device.orEmpty()}")
             sb.appendLine("処理: ${card.action ?: card.kind ?: ""}")
             sb.appendLine("日付: ${card.date.orEmpty()}")
+<<<<<<< HEAD
             val inPlace = listOf(card.inCompany, card.inLine, card.inStation).readableJoin().takeIf { it != "-" }
             val outPlace = listOf(card.outCompany, card.outLine, card.outStation).readableJoin().takeIf { it != "-" }
             if (inPlace != null || outPlace != null) {
@@ -419,14 +442,22 @@ class TopScreenViewModel(
             } else {
                 sb.appendLine("種別: ${card.activityLabel()}")
             }
+=======
+            sb.appendLine("入場: ${listOf(card.inCompany, card.inLine, card.inStation).readableJoin()}")
+            sb.appendLine("出場: ${listOf(card.outCompany, card.outLine, card.outStation).readableJoin()}")
+>>>>>>> origin/main
             sb.appendLine("差額: ${card.amount.orEmpty()}")
             sb.appendLine("残高: ${card.balance.orEmpty()}")
             sb.appendLine()
         }
         sb.appendLine("BIN:")
+<<<<<<< HEAD
         rawResponses.forEachIndexed { index, data ->
             sb.appendLine("[chunk ${index + 1}] ${data.joinToString(" ") { "%02x".format(it) }}")
         }
+=======
+        sb.appendLine(data.joinToString(" ") { "%02x".format(it) })
+>>>>>>> origin/main
         return sb.toString().trim()
     }
 
@@ -452,8 +483,11 @@ class TopScreenViewModel(
         return merged.copy(
             date = saved.date,
             amount = saved.amount,
+<<<<<<< HEAD
             kind = saved.kind,
             device = saved.device,
+=======
+>>>>>>> origin/main
             action = saved.action,
             inCompany = saved.inCompany,
             inLine = saved.inLine,
@@ -658,6 +692,7 @@ class TopScreenViewModel(
     private fun List<String?>.readableJoin(): String =
         filterNot { it.isNullOrBlank() }.joinToString(" / ").ifBlank { "-" }
 
+<<<<<<< HEAD
     private fun Card.activityLabel(): String {
         val text = listOf(action, kind, device).joinToString(" ")
         return when {
@@ -668,17 +703,22 @@ class TopScreenViewModel(
         }
     }
 
+=======
+>>>>>>> origin/main
     private data class ReadResult(
         val cardId: String,
         val cards: List<Card>,
         val rawText: String
     )
 
+<<<<<<< HEAD
     private data class ReadChunks(
         val cards: List<Card>,
         val rawResponses: List<ByteArray>
     )
 
+=======
+>>>>>>> origin/main
     companion object {
         private const val PREFS_NAME = "suica_reader_history"
         private const val KEY_HISTORY = "history"
@@ -689,8 +729,12 @@ class TopScreenViewModel(
         private const val KEY_FEATURE_FLAGS = "feature_flags"
         private const val DEFAULT_ACCENT_COLOR = "#8AD7C8"
         private const val LEGACY_CARD_ID = "legacy"
+<<<<<<< HEAD
         private const val READ_BLOCK_CHUNK_SIZE = 10
         private const val MAX_READ_BLOCKS = 50
+=======
+        private const val READ_BLOCK_COUNT = 10
+>>>>>>> origin/main
         private const val MAX_HISTORY_ITEMS = 300
     }
 }

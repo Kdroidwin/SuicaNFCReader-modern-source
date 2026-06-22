@@ -39,6 +39,7 @@ data class Card(
             } else {
                 null
             }
+<<<<<<< HEAD
             val chargeStationDetails = if (felica.isChargeRecord()) {
                 context?.let { Station.getStation(it, felica.regionCode, felica.inLine, felica.inStation) }
             } else {
@@ -49,6 +50,8 @@ data class Card(
             } else {
                 null
             }
+=======
+>>>>>>> origin/main
             val inStationDetails = stationPair?.first
             val outStationDetails = stationPair?.second
 
@@ -59,9 +62,15 @@ data class Card(
                 kind = felica.kind
                 device = felica.device
                 action = felica.action
+<<<<<<< HEAD
                 inLine = inStationDetails?.lineName ?: chargeStationDetails?.lineName ?: busStopDetails?.lineName
                 inStation = inStationDetails?.stationName ?: chargeStationDetails?.stationName ?: busStopDetails?.stationName
                 inCompany = inStationDetails?.company ?: chargeStationDetails?.company ?: busStopDetails?.company
+=======
+                inLine = inStationDetails?.lineName
+                inStation = inStationDetails?.stationName
+                inCompany = inStationDetails?.company
+>>>>>>> origin/main
                 outLine = outStationDetails?.lineName
                 outStation = outStationDetails?.stationName
                 outCompany = outStationDetails?.company

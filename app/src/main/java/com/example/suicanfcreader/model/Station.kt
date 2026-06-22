@@ -14,8 +14,11 @@ data class Station(
     companion object {
         @Volatile
         private var stationCache: StationCache? = null
+<<<<<<< HEAD
         @Volatile
         private var busStopCache: StationCache? = null
+=======
+>>>>>>> origin/main
 
         fun getStation(context: Context, regionCode: Int, lineCode: Int, stationCode: Int): Station? {
             return resolvePair(
@@ -28,6 +31,7 @@ data class Station(
             ).first
         }
 
+<<<<<<< HEAD
         fun getBusStop(context: Context, lineCode: Int, stationCode: Int): Station? {
             val lineCodeLow = lineCode and 0xff
             val stationCodeLow = stationCode and 0xff
@@ -37,6 +41,8 @@ data class Station(
                 .preferred()
         }
 
+=======
+>>>>>>> origin/main
         fun resolvePair(
             context: Context,
             regionCode: Int,
@@ -73,6 +79,7 @@ data class Station(
             }
         }
 
+<<<<<<< HEAD
         private fun loadBusStops(context: Context): StationCache {
             busStopCache?.let { return it }
             return synchronized(this) {
@@ -80,6 +87,8 @@ data class Station(
             }
         }
 
+=======
+>>>>>>> origin/main
         private fun readStationCsv(context: Context): StationCache {
             val byLineStation = linkedMapOf<String, MutableList<Station>>()
 
@@ -114,6 +123,7 @@ data class Station(
             return StationCache(byLineStation = byLineStation)
         }
 
+<<<<<<< HEAD
         private fun readBusStopCsv(context: Context): StationCache {
             val byLineStation = linkedMapOf<String, MutableList<Station>>()
 
@@ -147,6 +157,8 @@ data class Station(
             return StationCache(byLineStation = byLineStation)
         }
 
+=======
+>>>>>>> origin/main
         private fun StationCache.candidates(lineCode: Int, stationCode: Int): List<Station> {
             if (lineCode == 0 && stationCode == 0) return emptyList()
             return byLineStation[lineStationKey(lineCode, stationCode)].orEmpty()

@@ -20,8 +20,11 @@ public class SuicaReader {
     public int inLine;
     public int outStation;
     public int outLine;
+<<<<<<< HEAD
     public int busLine;
     public int busStop;
+=======
+>>>>>>> origin/main
 
     public String device;
     public String action;
@@ -46,9 +49,13 @@ public class SuicaReader {
         this.month = (dateBits >> 5) & 0x00f;
         this.day = dateBits & 0x01f;
 
+<<<<<<< HEAD
         if (isCharge(this.procId)) {
             this.kind = "チャージ";
         } else if (isShopping(this.procId)) {
+=======
+        if (isShopping(this.procId)) {
+>>>>>>> origin/main
             this.kind = "物販";
         } else if (isBus(this.procId)) {
             this.kind = "バス";
@@ -60,8 +67,11 @@ public class SuicaReader {
         this.inStation = toInt(res, off, 7);
         this.outLine = toInt(res, off, 8);
         this.outStation = toInt(res, off, 9);
+<<<<<<< HEAD
         this.busLine = toInt(res, off, 6, 7);
         this.busStop = toInt(res, off, 8, 9);
+=======
+>>>>>>> origin/main
         this.remain = toInt(res, off, 11, 10);
         this.seqNo = toInt(res, off, 12, 13, 14);
         this.regionCode = toUnsigned(res[off + 15]);
@@ -84,6 +94,7 @@ public class SuicaReader {
     }
 
     public boolean isStationRecord() {
+<<<<<<< HEAD
         if (isCharge(this.procId) || isShopping(this.procId) || isBus(this.procId)) return false;
         return (inLine != 0 || inStation != 0 || outLine != 0 || outStation != 0);
     }
@@ -106,6 +117,14 @@ public class SuicaReader {
 
     private boolean isShopping(int procId) {
         return procId == 70 || procId == 74 || procId == 75 || procId == 198 || procId == 203;
+=======
+        if (isShopping(this.procId) || isBus(this.procId)) return false;
+        return (inLine != 0 || inStation != 0 || outLine != 0 || outStation != 0);
+    }
+
+    private boolean isShopping(int procId) {
+        return procId == 70 || procId == 73 || procId == 74 || procId == 75 || procId == 198 || procId == 203;
+>>>>>>> origin/main
     }
 
     private boolean isBus(int procId) {
@@ -114,11 +133,14 @@ public class SuicaReader {
 
     public static byte[] readWithoutEncryption(byte[] idm, int size)
             throws IOException {
+<<<<<<< HEAD
         return readWithoutEncryption(idm, 0, size);
     }
 
     public static byte[] readWithoutEncryption(byte[] idm, int startBlock, int size)
             throws IOException {
+=======
+>>>>>>> origin/main
         ByteArrayOutputStream bout = new ByteArrayOutputStream(100);
 
         bout.write(0);
@@ -130,7 +152,11 @@ public class SuicaReader {
         bout.write(size);
         for (int i = 0; i < size; i++) {
             bout.write(0x80);
+<<<<<<< HEAD
             bout.write(startBlock + i);
+=======
+            bout.write(i);
+>>>>>>> origin/main
         }
 
         byte[] msg = bout.toByteArray();
