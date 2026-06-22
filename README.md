@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-# Suica NFC Reader by Kdroidwin
-=======
 # suicanfc kd
->>>>>>> origin/main
 
 このAndroidアプリは、日本で広く利用されている交通系NFCカード **Suica** 、**Pasmo** 、**ICOCA** 、**manaca**などのデータを読み取り、表示するために作られています。
 
 このアプリでは、カードから取得した **データを確認** することができます。
-<<<<<<< HEAD
-=======
 プライバシー重視でインターネットに接続する権限はないためテレメトリなどはありません。
->>>>>>> origin/main
 
 ## 最新APKバージョン
 
@@ -26,11 +19,6 @@
 - テーマ変更
 - 履歴保存
 - 複数のカードに対応
-<<<<<<< HEAD
-
-## Credits
-- https://github.com/edenparadisus/SuicaNFCReader
-=======
 - ICOCA判定
 - カード名手動編集
 - タイトル名手動編集
@@ -45,5 +33,4 @@
 
 ## Credits
 - [SuicaNFCReader](https://github.com/edenparadisus/SuicaNFCReader)　(NFCを読み取る部分)
->>>>>>> origin/main
 - Codex
