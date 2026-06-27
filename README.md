@@ -1,4 +1,4 @@
-# suicanfc kd
+# SuicaNfc KD
 
 このAndroidアプリは、日本で広く利用されている交通系NFCカード **Suica** 、**Pasmo** 、**ICOCA** 、**manaca**などのデータを読み取り、表示するために作られています。
 
